@@ -19,7 +19,7 @@ export const getJoke = async (req: Request, res: Response, next: NextFunction): 
     if (type === 'Propio') {
       const jokes = await Joke.find();
       if (jokes.length === 0) {
-        return res.status(404).json({ message: 'Aún no hay chistes, ¡cree uno!' });
+        return res.status(404).json({ message: 'Aún no hay chistes, crea uno' });
       }
       return res.json({ joke: jokes[Math.floor(Math.random() * jokes.length)] });
     }
