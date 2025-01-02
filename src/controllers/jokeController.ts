@@ -51,6 +51,27 @@ export const createJoke = async (req: Request, res: Response, next: NextFunction
   }
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const deleteJoke = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
   try {
     const { id } = req.params;
