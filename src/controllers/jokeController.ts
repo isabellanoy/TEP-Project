@@ -55,9 +55,9 @@ export const getOwnJokeById = async (req: Request, res: Response, next: NextFunc
     try {
         const { id } = req.params;
         const joke = await Joke.findById(id);
-        if (!joke) {
-            return res.status(404).json({ message: 'Chiste no encontrado' });
-        }
+
+        if (!joke) return res.status(404).json({ message: 'Chiste no encontrado' });
+
         return res.status(200).json({ 
             message: 'Chiste encontrado', 
             joke: { 
@@ -75,24 +75,45 @@ export const getOwnJokeById = async (req: Request, res: Response, next: NextFunc
 
 export const deleteJoke = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
     try {
-      const { id } = req.params;
-      const joke = await Joke.findByIdAndDelete(id);
-  
-      if (!joke) {
-        return res.status(404).json({ message: 'Chiste no encontrado' });
-      }
-  
-      return res.status(201).json({
-          message: 'Chiste eliminado exitosamente',
-          joke: {
+        const { id } = req.params;
+        const joke = await Joke.findByIdAndDelete(id);
+
+        if (!joke) return res.status(404).json({ message: 'Chiste no encontrado' });
+
+        return res.status(200).json({
+            message: 'Chiste eliminado exitosamente',
+            joke: {
+                id: joke._id,
+                text: joke.text,
+                author: joke.author,
+                rating: joke.rating,
+                category: joke.category,
+            },
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const updateJoke = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    try {
+        const { id } = req.params;
+        const { text, author, rating, category } = req.body;
+        const joke = await Joke.findByIdAndUpdate(id, { text, author, rating, category }, { new: true });
+
+        if (!joke) return res.status(404).json({ message: 'Chiste no encontrado' });
+
+        return res.status(201).json({
+            message: 'Chiste modificqado exitosamente',
+            joke: {
             id: joke._id,
             text: joke.text,
             author: joke.author,
             rating: joke.rating,
             category: joke.category,
-          },
+            },
         });
     } catch (error) {
-      next(error);
+        next(error);
     }
 };

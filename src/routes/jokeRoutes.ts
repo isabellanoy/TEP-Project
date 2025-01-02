@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getJoke, createJoke, getOwnJokeById, deleteJoke } from '../controllers/jokeController';
+import { getJoke, createJoke, getOwnJokeById, deleteJoke, updateJoke } from '../controllers/jokeController';
 
 const router = Router();
 
@@ -15,7 +15,9 @@ router.delete('/Propio/:id', (req, res, next) => {
 router.get('/Propio/:id', (req, res, next) => {
     getOwnJokeById(req, res, next)
 })  // GET para obtener un chiste por su ID
-
+router.put('/Propio/:id', (req, res, next) => {
+    updateJoke(req, res, next)
+})  // PUT para actualizar un chiste
 
 export default router;
 
