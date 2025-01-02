@@ -36,7 +36,7 @@ export const createJoke = async (req: Request, res: Response, next: NextFunction
     const newJoke = new Joke({ text, author, rating, category });
     await newJoke.save();
 
-    return res.status(201).json({
+    return res.status(200).json({
       message: 'Chiste creado exitosamente',
       joke: {
         id: newJoke._id,
