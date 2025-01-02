@@ -73,4 +73,24 @@ export const deleteJoke = async (req: Request, res: Response, next: NextFunction
   } catch (error) {
     next(error);
   }
+export const getOwnJokeById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    try {
+        const { id } = req.params;
+        const joke = await Joke.findById(id);
+        if (!joke) {
+            return res.status(404).json({ message: 'Chiste no encontrado' });
+        }
+        return res.status(200).json({ 
+            message: 'Chiste encontrado', 
+            joke: { 
+                id: joke._id, 
+                text: joke.text, 
+                author: joke.author, 
+                rating: joke.rating, 
+                category: joke.category, 
+            }, 
+        });
+    } catch (error) {
+        next(error);
+    }
 };
