@@ -9,9 +9,6 @@ router.get('/:type', (req, res, next) => {
 router.post('/', (req, res, next) => {
     createJoke(req, res, next)
 })   // POST para crear un chiste
-
-
-
 router.delete('/Propio/:id', (req, res, next) => {
     deleteJoke(req, res, next)
 })  // DELETE para borrar un chiste
