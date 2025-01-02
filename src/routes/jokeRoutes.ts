@@ -1,6 +1,5 @@
 import { Router } from 'express';
-import { getJoke, createJoke, deleteJoke } from '../controllers/jokeController';
-import { getJoke, createJoke, getOwnJokeById } from '../controllers/jokeController';
+import { getJoke, createJoke, getOwnJokeById, deleteJoke } from '../controllers/jokeController';
 
 const router = Router();
 
