@@ -51,7 +51,7 @@ export const createJoke = async (req: Request, res: Response, next: NextFunction
   }
 };
 
-export const getJokeById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+export const getOwnJokeById = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
     try {
         const { id } = req.params;
         const joke = await Joke.findById(id);
