@@ -1,5 +1,5 @@
 import swaggerJSDoc from 'swagger-jsdoc';
-import swaggerUi from 'swagger-ui-express';
+import swaggerUi, { serve } from 'swagger-ui-express';
 import { Express } from 'express';
 
 export const setupSwagger = (app: Express) => {
@@ -11,6 +11,11 @@ export const setupSwagger = (app: Express) => {
         version: '1.0.0',
         description: 'Una API para obtener y crear chistes',
       },
+      servers: [
+        {
+          url: 'http://localhost:3000',
+        },
+      ],
     },
     apis: ['./routes/*.ts'],  
   };
