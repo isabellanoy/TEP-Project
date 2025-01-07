@@ -117,3 +117,18 @@ export const updateJoke = async (req: Request, res: Response, next: NextFunction
         next(error);
     }
 };
+
+export const getJokesByRating = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+  try {
+      const { rating } = req.params;
+      const jokes = await Joke.find({ rating: Number(rating) });
+
+      if (jokes.length === 0) {
+          return res.status(404).json({ message: 'No se encontraron chistes con este puntaje' });
+      }
+
+      return res.status(200).json({ jokes });
+  } catch (error) {
+      next(error);
+  }
+};
