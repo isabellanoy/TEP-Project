@@ -203,6 +203,27 @@ router.get('/Propio/:id', (req, res, next) => {
 router.put('/Propio/:id', (req, res, next) => {
     updateJoke(req, res, next)
 })  // PUT para actualizar un chiste
+/**
+ * @swagger
+ * /api/jokes/rating/{rating}:
+ *   get:
+ *     summary: Obtiene todos los chistes por puntaje
+ *     parameters:
+ *       - in: path
+ *         name: rating
+ *         required: true
+ *         schema:
+ *           type: number
+ *         description: El puntaje de los chistes
+ *     responses:
+ *       200:
+ *         description: Lista de chistes con el puntaje especificado
+ *       404:
+ *         description: No se encontraron chistes con este puntaje
+ */
+router.get('/rating/:rating', (req, res, next) => {
+    getJokesByRating(req, res, next);
+});  // GET para obtener todos los chistes por puntaje
 
 export default router;
 
