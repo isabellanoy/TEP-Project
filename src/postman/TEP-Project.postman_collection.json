@@ -99,6 +99,28 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get Joke Count by Category",
+			"request": {
+			  "method": "GET",
+			  "header": [],
+			  "url": {
+				"raw": "http://localhost:3000/api/jokes/count/Propio",
+				"protocol": "http",
+				"host": [
+				  "localhost"
+				],
+				"port": "3000",
+				"path": [
+				  "api",
+				  "jokes",
+				  "count",
+				  "Propio"
+				]
+			  }
+			},
+			"response": []
 		}
 	]
 }
