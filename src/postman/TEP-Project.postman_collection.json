@@ -99,6 +99,28 @@
 				}
 			},
 			"response": []
-		}
+		},
+		{
+			"name": "Get Jokes by Rating",
+			"request": {
+			  "method": "GET",
+			  "header": [],
+			  "url": {
+				"raw": "http://localhost:3000/api/jokes/rating/5",
+				"protocol": "http",
+				"host": [
+				  "localhost"
+				],
+				"port": "3000",
+				"path": [
+				  "api",
+				  "jokes",
+				  "rating",
+				  "5"
+				]
+			  }
+			},
+			"response": []
+	    }
 	]
 }
