@@ -132,3 +132,18 @@ export const getJokesByRating = async (req: Request, res: Response, next: NextFu
       next(error);
   }
 };
+
+export const getJokeCountByCategory = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+  try {
+    const { category } = req.params;
+    const count = await Joke.countDocuments({ category });
+
+    if (count === 0) {
+      return res.status(404).json({ message: 'No se encontraron chistes para esta categoría' });
+    }
+
+    return res.status(200).json({ category, count });
+  } catch (error) {
+    next(error);
+  }
+};
