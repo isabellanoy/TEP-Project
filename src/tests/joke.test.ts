@@ -80,3 +80,40 @@ describe('CRUD Jokes', () => {
         expect(res.body.joke.id).toBe(jokeId);
     });
 });
+
+describe('Jokes API - Get Joke Count by Category', () => {
+  const category = 'Malo';
+
+  it('should return the count of jokes for a given category', async () => {
+    // Mock de la respuesta de countDocuments
+    (Joke.countDocuments as jest.Mock).mockResolvedValue(5);
+
+    const res = await request(app).get(`/api/jokes/count/${category}`);
+
+    // Validar la respuesta
+    expect(res.statusCode).toBe(200);
+    expect(res.body.category).toBe(category);
+    expect(res.body.count).toBe(5);
+  });
+
+  it('should return 404 if no jokes are found for the given category', async () => {
+    // Mock para el caso en el que no se encuentran chistes
+    (Joke.countDocuments as jest.Mock).mockResolvedValue(0);
+
+    const res = await request(app).get(`/api/jokes/count/${category}`);
+
+    // Validar la respuesta
+    expect(res.statusCode).toBe(404);
+    expect(res.body.message).toBe('No se encontraron chistes para esta categoría');
+  });
+
+  it('should handle errors gracefully', async () => {
+    // Mock para simular un error
+    (Joke.countDocuments as jest.Mock).mockRejectedValue(new Error('Database error'));
+
+    const res = await request(app).get(`/api/jokes/count/${category}`);
+
+    // Validar la respuesta
+    expect(res.statusCode).toBe(500);
+  });
+});

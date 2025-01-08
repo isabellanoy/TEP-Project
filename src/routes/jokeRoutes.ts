@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getJoke, createJoke, getOwnJokeById, deleteJoke, updateJoke } from '../controllers/jokeController';
+import { getJoke, createJoke, getOwnJokeById, deleteJoke, updateJoke, getJokeCountByCategory } from '../controllers/jokeController';
 
 const router = Router();
 
@@ -203,6 +203,36 @@ router.get('/Propio/:id', (req, res, next) => {
 router.put('/Propio/:id', (req, res, next) => {
     updateJoke(req, res, next)
 })  // PUT para actualizar un chiste
+
+/**
+ * @swagger
+ * /api/jokes/count/{category}:
+ *   get:
+ *     summary: Obtiene la cantidad de chistes por categoría
+ *     parameters:
+ *       - in: path
+ *         name: category
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Categoría del chiste
+ *     responses:
+ *       200:
+ *         description: Cantidad de chistes por categoría
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 count:
+ *                   type: number
+ *                   description: Cantidad de chistes
+ *       404:
+ *         description: Categoría no encontrada
+ */
+router.get('/count/:category', (req, res, next) => {
+    getJokeCountByCategory(req, res, next);
+});  // GET para obtener la cantidad de chistes por categoría
 
 export default router;
 
