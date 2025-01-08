@@ -117,3 +117,48 @@ describe('Jokes API - Get Joke Count by Category', () => {
     expect(res.statusCode).toBe(500);
   });
 });
+
+describe('Jokes API - Get Jokes by Rating', () => {
+  const rating = 5;
+
+  it('should return jokes with the specified rating', async () => {
+    // Mock de la respuesta de find
+    const mockJokes = [
+      { _id: '1', text: 'Joke 1', author: 'Author 1', rating: 5, category: 'Funny' },
+      { _id: '2', text: 'Joke 2', author: 'Author 2', rating: 5, category: 'Funny' },
+    ];
+    (Joke.find as jest.Mock).mockResolvedValue(mockJokes);
+
+    // Llamar a la ruta
+    const res = await request(app).get(`/api/jokes/rating/${rating}`);
+
+    // Validar la respuesta
+    expect(res.statusCode).toBe(200);
+    expect(res.body.jokes).toHaveLength(mockJokes.length);
+    expect(res.body.jokes[0].rating).toBe(rating);
+    expect(res.body.jokes[1].rating).toBe(rating);
+  });
+
+  it('should return 404 if no jokes are found with the specified rating', async () => {
+    // Mock para el caso sin resultados
+    (Joke.find as jest.Mock).mockResolvedValue([]);
+
+    // Llamar a la ruta
+    const res = await request(app).get(`/api/jokes/rating/${rating}`);
+
+    // Validar la respuesta
+    expect(res.statusCode).toBe(404);
+    expect(res.body.message).toBe('No se encontraron chistes con este puntaje');
+  });
+
+  it('should handle errors gracefully', async () => {
+    // Mock para simular un error
+    (Joke.find as jest.Mock).mockRejectedValue(new Error('Database error'));
+
+    // Llamar a la ruta
+    const res = await request(app).get(`/api/jokes/rating/${rating}`);
+
+    // Validar la respuesta
+    expect(res.statusCode).toBe(500); 
+  });
+});

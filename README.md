@@ -1,6 +1,6 @@
 # TEP-Project
 
-Este proyecto es una API desarrollada en Node.js con Express, TypeScript, MongoDB y documentación con Swagger.
+Este proyecto es una API desarrollada en Node.js con Express, TypeScript, MongoDB y documentación con Swagger. La rama principal es Develop.
 
 ## Requisitos Previos
 
