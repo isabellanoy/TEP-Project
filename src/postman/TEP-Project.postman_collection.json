@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "6fcec427-1954-4273-aca1-14743d7e5106",
+		"name": "TEP-Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19821764",
+		"_collection_link": "https://blue-space-106315.postman.co/workspace/52fa0cea-ea39-42d3-bea2-c84ada697c14/collection/19821764-6fcec427-1954-4273-aca1-14743d7e5106?action=share&source=collection_link&creator=19821764"
+	},
+	"item": [
+		{
+			"name": "JokesDad",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/jokes/Dad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"jokes",
+						"Dad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JokesChuck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/jokes/Chuck",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"jokes",
+						"Chuck"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JokesOwn",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/jokes/Propio",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"jokes",
+						"Propio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateJokes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"text\": \"newJoke.text\",\r\n        \"author\": \"newJoke.author\",\r\n        \"rating\": 0,\r\n        \"category\": \"newJoke.category\"\r\n      }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/jokes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"jokes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Jokes by Rating",
+			"request": {
+			  "method": "GET",
+			  "header": [],
+			  "url": {
+				"raw": "http://localhost:3000/api/jokes/rating/5",
+				"protocol": "http",
+				"host": [
+				  "localhost"
+				],
+				"port": "3000",
+				"path": [
+				  "api",
+				  "jokes",
+				  "rating",
+				  "5"
+				]
+			  }
+			},
+			"response": []
+	    }
+	]
+}
